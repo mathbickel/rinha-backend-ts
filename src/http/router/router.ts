@@ -8,7 +8,7 @@ export class Router {
     async init(): Promise<void> 
     {
         this.httpClient.on('get', '/clientes/:id/extrato', async (req: HttpRequest) => {
-            return await new ExtractRepositoryRedis().get(10)
+            return await new ExtractRepositoryRedis(req).get()
         })
 
         this.httpClient.on('post', '/transacoes', async (req: string, body: unknown) => {
