@@ -1,4 +1,4 @@
 export interface HttpClient {
-    on(method: string, url: string , callback: Function): void
+    on(method: string, url: string, callback: Function): void
     listen(port: number): void
 }

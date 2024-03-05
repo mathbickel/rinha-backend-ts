@@ -1,6 +1,5 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response } from "express";
 import { HttpClient } from "../http-client/http-client";
-
 
 export class ExpressAdapter implements HttpClient {
     app: any
@@ -11,6 +10,7 @@ export class ExpressAdapter implements HttpClient {
         this.app = express()
         this.app.use(express.json())
         this.port = this.port
+        // bootstrapStart()
     }
 
     on(method: string, url: string, callback: Function): void 
