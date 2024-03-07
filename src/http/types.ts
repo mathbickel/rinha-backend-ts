@@ -1,3 +1,5 @@
 import { Request } from 'express';
 
-export interface HttpRequest extends Request {}
+export interface HttpRequest extends Request {
+    id?: number
+}
