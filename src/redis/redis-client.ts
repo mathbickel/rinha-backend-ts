@@ -1,8 +1,10 @@
 
 import { setMaxListeners } from "events";
 import { Redis } from "ioredis";
+import { injectable } from "tsyringe";
 import { RepositoryClient } from "../common/repositories/repository-client";
 
+@injectable()
 export class RedisClient implements RepositoryClient {
     async getConnection<Redis>(): Promise<Redis> {
         try {
@@ -15,7 +17,7 @@ export class RedisClient implements RepositoryClient {
             const connectionStr = `${protocol}://${password}${host}:${port}`
             const redis = new Redis(connectionStr)
             process.on('SIGTERM', () => redis.quit())
-            return  redis as Redis
+            return redis as Redis
         } catch (error) {
             console.log(error)
             throw error

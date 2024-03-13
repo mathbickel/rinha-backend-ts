@@ -1,11 +1,22 @@
+import { Redis } from "ioredis";
+import { inject, injectable } from "tsyringe";
+import { RedisClient } from "../../redis/redis-client";
 import { Extract } from "../domain/extract";
 import { ExtractRepository } from "../domain/extract-repository";
-
+import { ExtractRepositoryRedisEnum } from "./enum/extract-repository-redis-enum";
+@injectable()
 export class ExtractRepositoryRedis implements ExtractRepository {
-  constructor(protected client: any){}  
-  
-  async get(id: number): Promise<Extract> {
+  private conn: Redis
 
+  constructor(@inject(ExtractRepositoryRedisEnum.REDIS_CONNECTION) private RedisClient: RedisClient){}
+
+  async set(data: Extract): Promise<void> 
+  {
+    this.conn = await this.RedisClient.getConnection()
+  }
+  
+  async get(id: number): Promise<Extract> 
+  {
     return result
   }
 }
