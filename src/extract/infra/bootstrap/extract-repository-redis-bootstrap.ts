@@ -8,6 +8,6 @@ export class ExtractRepositoryRedisBootstrap implements Bootstrap {
     async handler(): Promise<void> {
         new DotEnvBootstrap().handler()
 
-        container.register(ExtractRepositoryRedisEnum.REDIS_CONNECTION, RedisClient)
+        container.register(ExtractRepositoryRedisEnum.REDIS_CLIENT, RedisClient)
     }
 }

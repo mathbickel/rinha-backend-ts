@@ -1,3 +1,3 @@
 export enum ExtractRepositoryRedisEnum {
-    REDIS_CONNECTION = 'RedisClient'
+    REDIS_CLIENT = 'RedisClient'
 }

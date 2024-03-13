@@ -8,15 +8,19 @@ import { ExtractRepositoryRedisEnum } from "./enum/extract-repository-redis-enum
 export class ExtractRepositoryRedis implements ExtractRepository {
   private conn: Redis
 
-  constructor(@inject(ExtractRepositoryRedisEnum.REDIS_CONNECTION) private RedisClient: RedisClient){}
+  constructor(@inject(ExtractRepositoryRedisEnum.REDIS_CLIENT) private RedisClient: RedisClient) {}
 
   async set(data: Extract): Promise<void> 
   {
     this.conn = await this.RedisClient.getConnection()
+
+    await this.conn.set('customers', data.toString())
   }
   
   async get(id: number): Promise<Extract> 
   {
+    this.conn = await this.RedisClient.getConnection()
+    const data = await this.conn.get('customers')
     return result
   }
 }
